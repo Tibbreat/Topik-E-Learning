@@ -1,0 +1,37 @@
+services:
+  mysql:
+    image: mysql
+    container_name: TOPIK-E-LEARNING-DB-SERVER
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=topik-e-learning
+      - MYSQL_ROOT_PASSWORD=topik@final
+    ports:
+      - '3340:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./initdb.sql:/docker-entry-point-initdb.d/initdb.sql
+    networks:
+      - default
+  backend-service:
+    container_name: topik-e-learning-be-site
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - default
+networks:
+  default:
+    name: topik-e-learning
+
+volumes:
+  mysql_data:
+
+
+
