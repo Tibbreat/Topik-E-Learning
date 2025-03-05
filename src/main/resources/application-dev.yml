@@ -17,7 +17,12 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
+openapi:
+  service:
+    api-docs: TEL-be
+    title: Topik E-Learning
+    version: v1.0.0
+    server: http://localhost:8080
 jwt:
   secretKey: topikDev@Env
 
