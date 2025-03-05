@@ -4,24 +4,25 @@ spring:
       on-profile: dev
   devtools:
     add-properties: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/topik-e-dev?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    database-platform:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
-    show-sql: false
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
+
 jwt:
-  secretKey: topikDevEnv
+  secretKey: topikDev@Env
+
 springdoc:
   api-docs:
     enabled: true
   swagger-ui:
     enabled: true
-openapi:
-  service:
-    api-docs: backend-service
-    server: http://localhost:${server.port}
-    title: Backend service
-    version: 1.0.0
